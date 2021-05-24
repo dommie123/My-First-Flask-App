@@ -42,8 +42,10 @@ class Item(Resource):
         status_code = 202
         if item is None:
             item = ItemModel(name, **data)
+            status_code = 201
         else:
             item.price = data['price']
+            status_code = 200
         
         item.save()
         return item.json(), status_code
